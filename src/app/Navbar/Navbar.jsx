@@ -3,64 +3,83 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
-  const pathname = usePathname()
-  console.log(pathname)
+  const pathname = usePathname();
+
+  const isActive = (path) => pathname.startsWith(path);
+
+  const linkClass = (path) =>
+    `transition ${
+      isActive(path)
+        ? "text-green-500 border-b-2 border-green-500"
+        : "text-black"
+    }`;
+
   return (
-    <div>
-      <div className="navbar bg-base-100 shadow-sm">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {" "}
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />{" "}
-              </svg>
-            </div>
-            <ul
-              tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-            >
-              <li>
-              <Link href="/allproduct">All Product</Link>
-            </li>
-            <li>
-              <Link href="/cart">Cart</Link>
-            </li>
-            <li>
-              <Link href="/review">Review</Link>
-            </li>
-            </ul>
+    <div className="navbar bg-base-100 shadow-sm">
+
+      {/* LEFT */}
+      <div className="navbar-start">
+        <div className="dropdown">
+          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            ☰
           </div>
-          <Link href="/" className="btn btn-ghost text-xl font-bold text-green-500">Meal<span className="text-red-600">Store</span></Link>
-        </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+
+          <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow">
             <li>
-              <Link href="/allproduct">All Product</Link>
+              <Link className={linkClass("/allproduct")} href="/allproduct">
+                All Product
+              </Link>
             </li>
+
             <li>
-              <Link href="/cart">Cart</Link>
+              <Link className={linkClass("/cart")} href="/cart">
+                Cart
+              </Link>
             </li>
+
             <li>
-              <Link href="/review">Review</Link>
+              <Link className={linkClass("/review")} href="/review">
+                Review
+              </Link>
             </li>
           </ul>
         </div>
-        <div className="navbar-end">
-          <a className="btn">Sign Up</a>
-        </div>
+
+        <Link href="/" className="btn btn-ghost text-xl font-bold text-green-500">
+          Meal<span className="text-red-600">Store</span>
+        </Link>
       </div>
+
+      {/* CENTER */}
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal px-1 gap-4">
+
+          <li>
+            <Link className={linkClass("/allproduct")} href="/allproduct">
+              All Product
+            </Link>
+          </li>
+
+          <li>
+            <Link className={linkClass("/cart")} href="/cart">
+              Cart
+            </Link>
+          </li>
+
+          <li>
+            <Link className={linkClass("/review")} href="/review">
+              Review
+            </Link>
+          </li>
+
+        </ul>
+      </div>
+
+      {/* RIGHT */}
+      <div className="navbar-end">
+        <button className="btn">Sign Up</button>
+      </div>
+
     </div>
   );
 }
