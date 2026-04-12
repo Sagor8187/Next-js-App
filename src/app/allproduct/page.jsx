@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import Button from "../component/Button"
 
 
 let loadData = async ()=>{
@@ -59,12 +60,14 @@ export default async function page() {
             </p>
 
             {/* Button */}
-            <Link href={`/allproduct/${item.id}`}>
-            <button className="mt-3 w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition">
+           <div className="flex justify-between">
+             <Link href={`/allproduct/${item.id}`}>
+            <button className="mt-3 p-5 font-bold w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition">
               View Details
             </button>
             </Link>
-        
+            <Button item={item}></Button>
+           </div>
 
           </div>
         </div>

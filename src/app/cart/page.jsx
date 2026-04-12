@@ -1,6 +1,9 @@
+import Cartcard from "../component/Cartcard";
 
 export default function page() {
   return (
-    <div> cart page</div>
+    <div>
+      <Cartcard></Cartcard>
+    </div>
   )
 }

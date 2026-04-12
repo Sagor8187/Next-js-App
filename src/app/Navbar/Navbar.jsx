@@ -1,10 +1,12 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useContext } from "react";
+import { Mycontext } from "../context/Cartcontext";
 
 export default function Navbar() {
   const pathname = usePathname();
-
+  const {cart} = useContext(Mycontext)
   const isActive = (path) => pathname.startsWith(path);
 
   const linkClass = (path) =>
@@ -60,10 +62,12 @@ export default function Navbar() {
             </Link>
           </li>
 
-          <li>
+          <li className="flex relative flex-row ">
             <Link className={linkClass("/cart")} href="/cart">
               Cart
+              <span className="absolute right-1 top-1 text-red-500 font-bold">{cart.length}</span>
             </Link>
+            
           </li>
 
           <li>
