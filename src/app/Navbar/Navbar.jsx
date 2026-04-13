@@ -70,7 +70,7 @@ export default function Navbar() {
             
           </li>
 
-          <li>
+          <li> 
             <Link className={linkClass("/review")} href="/review">
               Review
             </Link>
